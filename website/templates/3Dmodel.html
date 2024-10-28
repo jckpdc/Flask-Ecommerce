@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Viewer</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background: grey;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        model-viewer {
+            left: 10px;
+            width: 1000px;
+            height: 800px;
+            top: 5px;
+            background: linear-gradient(to right, #eaeade, #93c8cc);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 5px solid white;
+        }
+
+        .back-button {
+            position: absolute;
+            top: 310px;
+            right: 171px;
+            background-color: #93c8cc;
+            color: white;
+            border: white;
+            padding: 5px 50px;
+            border-radius: 10px;
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: #82b5b9;
+        }
+
+
+        .material-button {
+            position: absolute;
+            right: 160px;
+            background-color: white;
+            color: grey;
+            padding: 10px 70px;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s;
+        }
+
+        .material-button:hover {
+            background-color: #82b5b9;
+        }
+
+        .material-button:nth-child(3) { top: 120px; }
+        .material-button:nth-child(4) { top: 180px; right: 162px }
+        .material-button:nth-child(5) { top: 240px; right: 164px}
+
+    </style>
+</head>
+<body>
+
+    <button class="back-button" onclick="location.href='/product/3'">< Back</button>
+
+    <model-viewer id="model-viewer"
+                src="../static/3d_models/cute_coffee_new.glb"
+                  ar ar-modes="webxr scene-viewer quick-look"
+                  camera-controls tone-mapping="neutral" shadow-intensity="1">
+    </model-viewer>
+
+    <button class="material-button" onclick="changeModel('plastic')">Plastic</button>
+    <button class="material-button" onclick="changeModel('wood')">Wood</button>
+    <button class="material-button" onclick="changeModel('steel')">Metal</button>
+
+    <script>
+    function changeModel(material) {
+            const modelViewer = document.getElementById('model-viewer');
+            if (material === 'plastic') {
+                modelViewer.src = "../static/3d_models/cute_coffee_new.glb";
+            } else if (material === 'wood') {
+                modelViewer.src = "../static/3d_models/cute_coffee_wood.glb";
+            } else if (material === 'steel') {
+                modelViewer.src = "../static/3d_models/cute_coffee_steel.glb";
+            }
+        }
+    </script>
+
+</body>
+</html>

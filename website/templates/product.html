@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Chair</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #eaeade, #93c8cc);
+            color: #333;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: #fff;
+            display: flex;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .image-section {
+            flex: 1;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        /* Image Carousel Styles */
+        .image-carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 130px;
+        }
+
+        .image-carousel img {
+            width: 320px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 10px;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .image-section img {
+            display: none;
+        }
+
+        .image-section .active {
+            display: block;
+        }
+
+        /* End Image Carousel Styles */
+
+        .details-section {
+            flex: 2;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .details-section h1 {
+            font-size: 28px;
+            color: #333;
+        }
+        .price {
+            font-size: 26px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+        .description-tabs {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        .description-tabs button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: #333;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 5px;
+            cursor: pointer;
+        }
+        .description-tabs button.active {
+            border-bottom: 2px solid #93c8cc;
+            font-weight: bold;
+        }
+        .description-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .description-details strong {
+            color: #333;
+        }
+        .materials, .colors {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .materials button, .colors button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .materials button.active, .colors button.active {
+            border: 2px solid #333;
+        }
+        .materials button {
+            background-color: #aaa;
+        }
+        .colors button {
+            border: 2px solid transparent;
+        }
+        .color-option.red { background-color: #ab4b3a; }
+        .color-option.brown { background-color: #a37551; }
+        .color-option.beige { background-color: #e6dbc9; }
+        .color-option.gray { background-color: #7c7d7d; }
+        .actions {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+        }
+        .actions button {
+            background-color: #93c8cc;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            flex: 1;
+        }
+        .actions button.favorite {
+            background-color: #93c8cc;
+            color: white;
+            border: none;
+        }
+        .actions button:hover {
+            background-color: gray;
+        }
+
+        .view-model {
+            background-color: #93c8cc; /* Same color as other buttons */
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px; /* Add space above the button */
+            align-self: center; /* Center the button */
+        }
+        .view-model:hover {
+            background-color: gray; /* Darker on hover */
+        }
+
+        .back-button {
+            background-color: #93c8cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px; /* Space below the button */
+        }
+        .back-button:hover {
+            background-color: gray; /* Darker on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="image-section">
+            <div class="image-carousel" style="top: 10px">
+                <img src="/media/cute_table_1.png" alt="Coffee table" class="active" data-material="Plastic">
+                <img src="/media/cute_table_2.png" alt="Coffee table" class="active" data-material="Wood">
+                <img src="/media/cute_table_3.png" alt="Coffee table" class="active" data-material="Steel">
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h1>Cute Coffee Table</h1>
+            <div class="price">Rs 4000.0</div>
+
+            <div class="description-tabs">
+                <button class="active" id="desc-tab">DESCRIPTION</button>
+                <button id="details-tab">DETAILS</button>
+            </div>
+
+            <div class="description-details" id="description">
+                <strong>Material:</strong> Plastic, Wood, Steel<br>
+                <strong>Size:</strong> 80W × 100H<br>
+                <strong>Shipping:</strong> Available to Asia & Oceania
+            </div>
+
+            <div class="description-details" id="details" style="display: none;">
+                <strong>Care Instructions:</strong> Spot clean with a damp cloth.<br>
+                <strong>Assembly:</strong> Minimal assembly required.<br>
+                <strong>Warranty:</strong> 1-year limited warranty.
+            </div>
+
+            <div class="materials">
+                <button class="material-btn active" data-material="Plastic"></button>
+                <button class="material-btn" data-material="Wood"></button>
+                <button class="material-btn" data-material="Steel"></button>
+            </div>
+
+            <div class="actions">
+                <button onclick="location.href= '/add-to-cart/{{ item.id }}'" style="cursor: pointer;">Add to Cart</button>
+                <button class="favorite" onclick= "location.href='/wishlist'">♡ Add to Wishlist</button>
+            </div>
+            <button class="view-model" onclick= "location.href='/3Dmodel'">View 3D Model</button>
+        </div>
+    </div>
+
+    <script>
+        const descTab = document.getElementById('desc-tab');
+        const detailsTab = document.getElementById('details-tab');
+        const description = document.getElementById('description');
+        const details = document.getElementById('details');
+
+        descTab.addEventListener('click', function() {
+            descTab.classList.add('active');
+            detailsTab.classList.remove('active');
+            description.style.display = 'block';
+            details.style.display = 'none';
+        });
+
+        detailsTab.addEventListener('click', function() {
+            detailsTab.classList.add('active');
+            descTab.classList.remove('active');
+            description.style.display = 'none';
+            details.style.display = 'block';
+        });
+
+        // Material selection
+        const materialButtons = document.querySelectorAll('.material-btn');
+        materialButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                materialButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                const selectedMaterial = this.dataset.material;
+                const imageEls = document.querySelectorAll('.image-carousel img');
+
+                imageEls.forEach(img => {
+                    img.style.display = 'none';
+                    if (img.dataset.material === selectedMaterial) {
+                        img.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+        function view3DModel() {
+    window.location.href = '3Dmodel.html';
+}
+
+    </script>
+</body>
+</html>

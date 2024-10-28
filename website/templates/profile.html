@@ -10,28 +10,102 @@
         <h3 style="color: white;">Welcome <span class="text-capitalize">{{ customer.username }}</span></h3>
 
         <div class="col-sm-2 border-end" style="margin-top: 20px;">
-        
-            <ul class="list-unstyled">
-                <li class="d-grid"><a href="#" class="btn btn-primary">Profile</a></li>
-                <li class="d-grid"><a href="/change-password/{{ customer.id }}" class="btn btn-primary" style="margin-top: 5px;">Change Password</a></li>
 
+            <ul class="list-unstyled">
+                <li class="d-grid"><a href="#" class="btn btn-primary"style="background-color: #93c8cc;margin-top: 5px;border: none;">Profile</a></li>
+                <li class="d-grid"><a href="/change-password/{{ customer.id }}" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none;margin-top: 5px;">Change Password</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">My Rewards</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">My Orders</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Addresses</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Payment Methods</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Contact Preferences</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Social Networks</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Need Help</a></li>
+                <li class="d-grid"><a href="#" class="btn btn-primary" style="background-color: #93c8cc;margin-top: 5px;border: none">Sign Out</a></li>
             </ul>
-        
+
         </div>
 
-        <div class="col-sm-5 offset-sm-1" style="background-color: white; border-radius: 18px; margin-top: 20px;">
+        <div class="col-sm-5 offset-sm-1" style="background-image:linear-gradient(to right, #eaeade, #93c8cc); border-radius: 18px; margin-top: 20px;">
             <div class="row">
-
                 <div class="col-sm-8">
                     <div class="card m-2">
-
                         <h3>{{ customer.username }}</h3>
                         <p>Email: {{ customer.email }}</p>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="firstName">First Name:</label>
+                                <input type="text" class="form-control" id="firstName" value="{{ customer.first_name }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lastName">Last Name:</label>
+                                <input type="text" class="form-control" id="lastName" value="{{ customer.last_name }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="gender">Gender:</label>
+                                <select class="form-select" id="gender" disabled>
+                                    <option value="male" {% if customer.gender =='male' %}selected{% endif %}>Male</option>
+                                    <option value="female" {% if customer.gender =='female' %}selected{% endif %}>Female</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="dob">Date of Birth:</label>
+                                <input type="date" class="form-control" id="dob" value="{{ customer.date_of_birth }}" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="address">Address:</label>
+                                <textarea class="form-control" id="address" rows="3" disabled>{{ customer.address }}</textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="city">City:</label>
+                                <input type="text" class="form-control" id="city" value="{{ customer.city }}" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="state">State:</label>
+                                <input type="text" class="form-control" id="state" value="{{ customer.state }}">
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="country">Country:</label>
+                                <input type="text" class="form-control" id="country" value="{{ customer.country }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="postal_code">Postal Code:</label>
+                                <input type="text" class="form-control" id="postal_code" value="{{ customer.postal_code }}" >
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="phone_number">Phone Number:</label>
+                                <input type="text" class="form-control" id="phone_number" value="{{ customer.phone_number }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" id="email" value="{{ customer.email }}" >
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="password">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-primary" style="background-color: #93c8cc; border: none">Save</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button type="button" class="btn btn-secondary" style="background-color: #93c8cc; border: none">Cancel</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
             </div>
-        
         </div>
     </div>
 </div>

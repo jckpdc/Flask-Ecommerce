@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Room Viewer</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            background: grey;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        model-viewer {
+            width: 800px;
+            height: 600px;
+            background: linear-gradient(to right, #eaeade, #93c8cc);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 5px solid white;
+        }
+        .side-buttons, .bottom-button {
+            position: absolute;
+            display: flex;
+            gap: 10px;
+        }
+        .side-buttons {
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+            flex-direction: column;
+        }
+        .material-button, .room-button {
+            background-color: white;
+            color: grey;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            transition: background-color 0.3s;
+        }
+        .material-button:hover, .room-button:hover {
+            background-color: #82b5b9;
+        }
+        .bottom-button {
+            bottom: 20px;
+            justify-content: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <model-viewer id="model-viewer"
+                  src="../static/3d_models/room.glb"
+                  ar ar-modes="webxr scene-viewer quick-look"
+                  camera-controls tone-mapping="neutral" shadow-intensity="1">
+    </model-viewer>
+
+    <div class="side-buttons">
+        <button class="material-button" onclick="changeModel('table')">Table</button>
+        <button class="material-button" onclick="changeModel('chairs')">Chairs</button>
+        <button class="material-button" onclick="changeModel('light')">Ceiling Light</button>
+        <button class="material-button" onclick="changeModel('shelf')">Shelf</button>
+    </div>
+
+    <div class="bottom-button">
+        <button class="room-button" onclick="changeModel('dining')">Dining Room</button>
+    </div>
+
+    <script>
+        function changeModel(model) {
+            const modelViewer = document.getElementById('model-viewer');
+            if (model === 'table') {
+                modelViewer.src = "../static/3d_models/room_table.glb";
+            } else if (model === 'chairs') {
+                modelViewer.src = "../static/3d_models/room_chair.glb";
+            } else if (model === 'light') {
+                modelViewer.src = "../static/3d_models/room_light.glb";
+            } else if (model === 'shelf') {
+                modelViewer.src = "../static/3d_models/room_shelf.glb";
+            } else if (model === 'dining') {
+                modelViewer.src = "../static/3d_models/room_set.glb";
+            }
+        }
+    </script>
+
+</body>
+</html>

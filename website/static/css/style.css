@@ -1,16 +1,16 @@
 .d-flex .btn{
-    background: orange;
-    border: 2px solid orange;
+    background: #93c8cc;
+    border: none;
     border-radius: 8px;
     color: #fff;
 }
 .d-flex .btn:hover{
-    background: rgb(228, 150, 7);
-    border: 2px solid rgb(228, 150, 7);
+    background: grey;
+    border: none;
 }
 
 #right1 :hover{
-    color: orange;
+    color: grey;
     transition: 300ms;
 }
 
